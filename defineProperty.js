@@ -4,7 +4,7 @@
  * @Autor: zhangyan
  * @Date: 2020-12-08 15:19:09
  * @LastEditors: zhangyan
- * @LastEditTime: 2020-12-08 17:43:30
+ * @LastEditTime: 2020-12-08 17:58:56
  */
 function obserable (data) {
   for (let prop in data) {
@@ -18,7 +18,7 @@ function obserable (data) {
         return this[`_${prop}`] || value
       },
       set (newValue) {
-        document.getElementById(prop).innerHTML = newValue
+        // document.getElementById(prop).innerHTML = newValue
         console.log('触发了set方法', prop)
         this[`_${prop}`] = newValue
       }

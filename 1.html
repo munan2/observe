@@ -1,0 +1,54 @@
+<!--
+ * @Description: 
+ * @Version: 2.0
+ * @Autor: zhangyan
+ * @Date: 2020-12-08 15:18:46
+ * @LastEditors: zhangyan
+ * @LastEditTime: 2020-12-08 16:56:00
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+      font-size: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div>我的名字：<span id="name">zhangyan</span></div>
+    <div>爸爸的名字：<span id="father">zhang</span></div>
+    <div>我喜欢什么？<span id="love">看剧</span></div>
+    <div>我的年龄：<span id="age"></span></div>
+  </div>
+  <script src="./defineProperty.js"></script>
+  <script src="./proxy.js"></script>
+  <script>
+    let name = document.getElementById('name')
+    let father = document.getElementById('father')
+    let love = document.getElementById('love')
+    let age = document.getElementById('age')
+
+    let person = {
+      name: 'zhangyan',
+      love: ['看剧'],
+      father: {
+        name: 'zhang'
+      }
+    }
+    let personData = observable(person)
+    autorun(() => {
+      name.innerHTML = personData.name
+      father.innerHTML = personData.father.name
+      love.innerHTML = personData.love
+      if (personData.age) {
+        age.innerHTML = personData.age
+      }
+    })
+  </script>
+</body>
+</html>

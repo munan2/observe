@@ -1,0 +1,72 @@
+<!--
+ * @Description: 
+ * @Version: 2.0
+ * @Autor: zhangyan
+ * @Date: 2020-12-08 15:18:58
+ * @LastEditors: zhangyan
+ * @LastEditTime: 2020-12-08 16:53:23
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+      font-size: 30px;
+    }
+    button {
+      font-size: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div style="margin-bottom: 20px;">
+      <button id="addButton">价格+1</button>
+      <button id="reduceButton">价格-1</button>
+    </div>
+    <div>当前单价：<span id="price"></span>元</div>
+    <div>当前数量：<span id="nums"></span>件</div>
+    <div>当前总价：<span id="total"></span>元</div>
+  </div>
+  <script src="./proxy.js"></script>
+  <script>
+    let addButton = document.getElementById('addButton')
+    let reduceButton = document.getElementById('reduceButton')
+    let price = document.getElementById('price')
+    let nums = document.getElementById('nums')
+    let total = document.getElementById('total')
+    let data = {
+      price: 10,
+      nums: 10,
+      a: 1,
+      get total () {
+        return this.price * this.nums
+      }
+    }
+    baseData = observable(data)
+    autorun(() => {
+      price.innerHTML = baseData.price
+      nums.innerHTML = baseData.nums
+      total.innerHTML = baseData.total
+    })
+    addButton.addEventListener('click', () => {
+      baseData.price++
+    })
+    reduceButton.addEventListener('click', () => {
+      baseData.price--
+    })
+    
+    watch({
+      price (cur, old) {
+        if (cur < 6) {
+          alert('不能再降价了')
+          baseData.price = 6
+        }
+      }
+    })
+  </script>
+</body>
+</html>

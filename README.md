@@ -423,10 +423,11 @@ target[prop] = value;
 
 ### Proxy 能避免前面 Object.defineProperty 的问题么
 
-经过测试发现
-（1）新增属性时，我们发现使用 Proxy 是可以监听到的。
-（2）深层对象呢，还是无法深层监听的
-（3）数组呢，也是无法深层监听的
+经过测试发现:
+
+1. 新增属性时，我们发现使用 Proxy 是可以监听到的。
+2. 深层对象呢，还是无法深层监听的
+3. 数组呢，也是无法深层监听的
 
 Proxy 它是对一个原始对象的代理，它不关心这个对象的具体 key 值，它去拦截的是任意修改 key 或者读取 key 的动作，所以它可以避免第一个问题。
 
@@ -461,7 +462,7 @@ function observable(data) {
 }
 ```
 
-补充：使用 Reflect 与 Proxy 搭配使用
+补充：**使用 Reflect 与 Proxy 搭配使用**
 
 ```js
 let xiaoming = observavle({
